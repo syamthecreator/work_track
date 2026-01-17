@@ -126,6 +126,7 @@ class _ProfileView extends StatelessWidget {
 }
 
 class _ProfileRow extends StatelessWidget {
+  
   final String icon;
   final String text;
 
