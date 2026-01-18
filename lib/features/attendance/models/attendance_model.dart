@@ -3,7 +3,8 @@ class AttendanceModel {
   final String shiftName;
   final String checkInLabel;
   final String checkOutLabel;
-  final String actionButtonText;
+  final String actionButtonCheckInText;
+  final String actionButtonCheckOutText;
   final String absentButtonText;
 
   final DateTime date;
@@ -15,7 +16,8 @@ class AttendanceModel {
     required this.shiftName,
     required this.checkInLabel,
     required this.checkOutLabel,
-    required this.actionButtonText,
+    required this.actionButtonCheckInText,
+    required this.actionButtonCheckOutText,
     required this.absentButtonText,
     required this.date,
     required this.time,

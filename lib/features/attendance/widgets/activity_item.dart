@@ -19,7 +19,6 @@ class ActivityItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          /// LEFT STATUS BAR
           Container(
             width: 8,
             height: 70,
@@ -53,7 +52,6 @@ class ActivityItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  /// TITLE
                   Text(
                     activity.title,
                     textAlign: TextAlign.center,

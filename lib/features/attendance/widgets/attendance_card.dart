@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:work_track/core/constants/app_colors.dart';
 import 'package:work_track/core/constants/app_icons.dart';
+import 'package:work_track/core/widgets/common_card_container.dart';
 import 'package:work_track/features/attendance/controller/attendance_controller.dart';
 import 'package:work_track/features/attendance/models/attendance_model.dart';
 
@@ -15,47 +16,23 @@ class AttendanceCard extends StatelessWidget {
     final controller = context.watch<AttendanceController>();
     final attendance = controller.attendance;
 
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: _buildCardDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildTitle(attendance),
-            const SizedBox(height: 16),
-            _AttendanceSwitch(controller: controller, attendance: attendance),
-            const SizedBox(height: 14),
-            _buildShiftTag(attendance.shiftName),
-            const SizedBox(height: 16),
-            _buildDateTimeActionRow(attendance),
-            const SizedBox(height: 16),
-            _buildDivider(),
-            const SizedBox(height: 12),
-            _buildAbsentButton(controller, attendance),
-          ],
-        ),
+    return CommonCardContainer(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildTitle(attendance),
+          const SizedBox(height: 16),
+          _AttendanceSwitch(controller: controller, attendance: attendance),
+          const SizedBox(height: 14),
+          _buildShiftTag(attendance.shiftName),
+          const SizedBox(height: 16),
+          _buildDateTimeActionRow(attendance, controller),
+          const SizedBox(height: 16),
+          _buildDivider(),
+          const SizedBox(height: 12),
+          _buildAbsentButton(controller, attendance),
+        ],
       ),
-    );
-  }
-
-  BoxDecoration _buildCardDecoration() {
-    return BoxDecoration(
-      color: AppColors.kGreyWhiteColour,
-      borderRadius: BorderRadius.circular(22),
-      border: Border.all(
-        color: AppColors.kBlackColour.withValues(alpha: 0.04),
-        width: 1,
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.kBlackColour.withValues(alpha: 0.25),
-          offset: const Offset(0, 1),
-          blurRadius: 8,
-          spreadRadius: 3,
-        ),
-      ],
     );
   }
 
@@ -88,7 +65,10 @@ class AttendanceCard extends StatelessWidget {
     );
   }
 
-  Widget _buildDateTimeActionRow(AttendanceModel attendance) {
+  Widget _buildDateTimeActionRow(
+    AttendanceModel attendance,
+    AttendanceController controller,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -96,7 +76,7 @@ class AttendanceCard extends StatelessWidget {
         const SizedBox(width: 8),
         _InfoChip(DateFormat('h:mm a').format(attendance.time)),
         const SizedBox(width: 8),
-        _ActionButton(attendance: attendance),
+        _ActionButton(attendance: attendance, controller: controller),
       ],
     );
   }
@@ -156,7 +136,7 @@ class AttendanceCard extends StatelessWidget {
   TextStyle _buildAbsentButtonTextStyle() {
     return const TextStyle(
       fontSize: 16,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w400,
       color: AppColors.kWhiteColour,
     );
   }
@@ -272,13 +252,14 @@ class _InfoChip extends StatelessWidget {
 
 class _ActionButton extends StatelessWidget {
   final AttendanceModel attendance;
+  final AttendanceController controller;
 
-  const _ActionButton({required this.attendance});
+  const _ActionButton({required this.attendance, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: _buildActionButtonDecoration(),
+      decoration: _buildActionButtonDecoration(controller),
       child: ElevatedButton(
         onPressed: () {},
         style: _buildActionButtonStyle(),
@@ -286,20 +267,26 @@ class _ActionButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildTimerIcon(),
-            const SizedBox(width: 6),
-            _buildButtonText(attendance.actionButtonText),
+            SizedBox(width: 6),
+            _buildButtonText(
+              controller.isCheckInTab
+                  ? attendance.actionButtonCheckInText
+                  : attendance.actionButtonCheckOutText,
+            ),
           ],
         ),
       ),
     );
   }
 
-  BoxDecoration _buildActionButtonDecoration() {
+  BoxDecoration _buildActionButtonDecoration(AttendanceController attendance) {
     return BoxDecoration(
-      gradient: const LinearGradient(
+      gradient: LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
-        colors: [AppColors.kGreenButtonLight, AppColors.kGreenButtonDark],
+        colors: attendance.isCheckInTab
+            ? [AppColors.kGreenButtonLight, AppColors.kGreenButtonDark]
+            : [AppColors.kRedButtonLight, AppColors.kRedButtonDark],
       ),
       borderRadius: BorderRadius.circular(10),
     );

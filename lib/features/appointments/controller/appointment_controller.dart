@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/appointment_model.dart';
 
 class AppointmentController extends ChangeNotifier {
-  /// 🎠 Controllers
   final PageController myPageController = PageController();
   final PageController nextPageController = PageController();
 
@@ -12,7 +11,7 @@ class AppointmentController extends ChangeNotifier {
   int get myIndex => _myIndex;
   int get nextIndex => _nextIndex;
 
-  /// 📌 Data
+  /// Data
   final List<AppointmentModel> myAppointments = [];
   final List<AppointmentModel> nextAppointments = [];
 

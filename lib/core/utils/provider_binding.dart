@@ -8,8 +8,8 @@ import 'package:work_track/features/profile/controller/profile_controller.dart';
 class AppProviderBinding {
   static List<SingleChildWidget> get providers => [
     ChangeNotifierProvider(create: (_) => AppointmentController()),
-    ChangeNotifierProvider(create: (_) => BottomNavigationController()),
     ChangeNotifierProvider(create: (_) => AttendanceController()),
     ChangeNotifierProvider(create: (_) => ProfileController()),
+    ChangeNotifierProvider(create: (_) => BottomNavigationController()),
   ];
 }

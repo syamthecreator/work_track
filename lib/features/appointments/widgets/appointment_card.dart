@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:work_track/core/constants/app_colors.dart';
 import 'package:work_track/core/constants/app_icons.dart';
+import 'package:work_track/core/widgets/common_card_container.dart';
 import '../models/appointment_model.dart';
 import 'package:intl/intl.dart';
 
@@ -13,26 +14,8 @@ class AppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      padding: const EdgeInsets.all(16),
-      decoration:  BoxDecoration(
-      color: AppColors.kGreyWhiteColour,
-      borderRadius: BorderRadius.circular(22),
-      border: Border.all(
-        color: AppColors.kBlackColour.withValues(alpha: 0.04),
-        width: 1,
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.kBlackColour.withValues(alpha: 0.25),
-          offset: const Offset(0, 1),
-          blurRadius: 8,
-          spreadRadius: 3,
-        ),
-      ],
-    ),
-
+    return CommonCardContainer(
+  
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

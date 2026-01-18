@@ -28,10 +28,8 @@ class AttendanceScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 120),
 
-                  /// ATTENDANCE CARD
                   const AttendanceCard(),
 
-                  /// TITLE ROW
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: Row(
@@ -42,6 +40,7 @@ class AttendanceScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w400,
+                            color: AppColors.kBlackColour
                           ),
                         ),
                         GestureDetector(
@@ -57,7 +56,6 @@ class AttendanceScreen extends StatelessWidget {
                     ),
                   ),
 
-                  /// ACTIVITY LIST
                   Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.only(bottom: 16),

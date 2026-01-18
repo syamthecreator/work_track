@@ -22,4 +22,7 @@ class AppColors {
   static const Color kGreenButtonDark = Color.fromRGBO(73, 136, 101, 1);
   static const Color kRedButtonLight = Color.fromRGBO(255, 102, 104, 1);
   static const Color kRedButtonDark = Color.fromRGBO(145, 0, 2, 1);
+  static const Color kYellowColour = Color.fromRGBO(246, 171, 39, 1);
+  static const Color kBlueDark = Color.fromRGBO(0, 149, 255, 1);
+  static const Color kBlueLight = Color.fromRGBO(0, 57, 123, 1);
 }

@@ -34,19 +34,25 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
               child: AnimatedBuilder(
                 animation: controller,
                 builder: (_, _) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "My Appointments",
-                        style: TextStyle(
-                          color: AppColors.kBlackColour,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 14,
+                          right: 14,
+                          top: 14,
+                        ),
+                        child: const Text(
+                          "My Appointments",
+                          style: TextStyle(
+                            color: AppColors.kBlackColour,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
 
@@ -61,14 +67,21 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         controller.myIndex,
                       ),
 
-                      const SizedBox(height: 28),
+                      const SizedBox(height: 10),
 
-                      const Text(
-                        "Next Appointments",
-                        style: TextStyle(
-                          color: AppColors.kBlackColour,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 14,
+                          right: 14,
+                          top: 10,
+                        ),
+                        child: const Text(
+                          "Next Appointments",
+                          style: TextStyle(
+                            color: AppColors.kBlackColour,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
 
@@ -105,10 +118,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         itemCount: appointments.length,
         onPageChanged: onChanged,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: AppointmentCard(appointment: appointments[index]),
-          );
+          return AppointmentCard(appointment: appointments[index]);
         },
       ),
     );
@@ -128,8 +138,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             height: 8,
             decoration: BoxDecoration(
               color: currentIndex == index
-                  ? Colors.black87
-                  : Colors.grey.shade400,
+                  ? AppColors.kSecondaryColour
+                  :AppColors.kgrey2Colour,
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -140,7 +150,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
   Widget _buildHeaderBackground() {
     return Container(
-      height: 126,
+      height: 156,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: AppColors.kSecondaryColour,

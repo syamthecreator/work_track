@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       providers: AppProviderBinding.providers,
 
       child: MaterialApp(
+            theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(splashFactory: NoSplash.splashFactory),
+        // theme: ThemeData(splashFactory: NoSplash.splashFactory),
         routes: AppRoutes.routes,
         initialRoute: AppRoutes.appointments,
       ),
